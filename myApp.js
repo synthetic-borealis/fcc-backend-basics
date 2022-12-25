@@ -5,6 +5,13 @@ require('dotenv').config();
 const staticPath = __dirname + '/public';
 const indexPath = __dirname + '/views/index.html';
 
+// Logger
+app.use(function (req, res, next) {
+    const logLine = `${req.method} ${req.path} - ${req.ip}`;
+    console.log(logLine);
+    next();
+});
+
 app.use('/public', express.static(staticPath));
 
 app.get('/json', function (req, res) {
