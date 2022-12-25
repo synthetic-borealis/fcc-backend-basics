@@ -14,6 +14,13 @@ app.use(function (req, res, next) {
 
 app.use('/public', express.static(staticPath));
 
+app.get('/now', function (req, res, next) {
+    req.time = new Date().toString();
+    next();
+}, function (req, res) {
+    res.send(req.time);
+});
+
 app.get('/json', function (req, res) {
     const { MESSAGE_STYLE } = process.env;
     if (MESSAGE_STYLE === 'uppercase') {
