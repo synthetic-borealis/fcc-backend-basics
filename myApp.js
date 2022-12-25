@@ -1,9 +1,13 @@
 let express = require('express');
 let app = express();
+let bodyParser = require('body-parser');
 require('dotenv').config();
 
 const staticPath = __dirname + '/public';
 const indexPath = __dirname + '/views/index.html';
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Logger
 app.use(function (req, res, next) {
