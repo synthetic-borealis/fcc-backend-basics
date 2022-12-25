@@ -18,7 +18,9 @@ app.get('/now', function (req, res, next) {
     req.time = new Date().toString();
     next();
 }, function (req, res) {
-    res.send(req.time);
+    res.send({
+        time: req.time,
+    });
 });
 
 app.get('/json', function (req, res) {
