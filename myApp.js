@@ -25,12 +25,19 @@ app.get('/:word/echo', function (req, res) {
     });
 });
 
-app.get('/name', function (req, res) {
-    const { first: firstName, last: lastName } = req.query;
-    res.send({
-        name: `${firstName} ${lastName}`,
+app.route('/name')
+    .get(function (req, res) {
+        const { first: firstName, last: lastName } = req.query;
+        res.send({
+            name: `${firstName} ${lastName}`,
+        });
+    })
+    .post(function (req, res) {
+        const { first: firstName, last: lastName } = req.body;
+        res.send({
+            name: `${firstName} ${lastName}`,
+        });
     });
-});
 
 app.get('/now', function (req, res, next) {
     req.time = new Date().toString();
