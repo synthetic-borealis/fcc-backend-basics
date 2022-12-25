@@ -8,7 +8,8 @@ const indexPath = __dirname + '/views/index.html';
 app.use('/public', express.static(staticPath));
 
 app.get('/json', function (req, res) {
-    if (process.env.MESSAGE_STYLE === 'uppercase') {
+    const { MESSAGE_STYLE } = process.env;
+    if (MESSAGE_STYLE === 'uppercase') {
         res.json({
             message: 'Hello json'.toUpperCase(),
         });
