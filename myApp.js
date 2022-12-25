@@ -14,6 +14,13 @@ app.use(function (req, res, next) {
 
 app.use('/public', express.static(staticPath));
 
+app.get('/:word/echo', function (req, res) {
+    const { word } = req.params;
+    res.send({
+        echo: word,
+    });
+});
+
 app.get('/now', function (req, res, next) {
     req.time = new Date().toString();
     next();
